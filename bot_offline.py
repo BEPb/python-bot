@@ -5,13 +5,12 @@ import numpy as np
 import cv2
 from mss.windows import MSS as mss
 import os  # для работы с командной строкой (определение экрана)
-from PIL import Image
 import time  # работа со временем
 import pyautogui as pg
 import logging  # модуль логирования
 import subprocess  # Запуск приложений windows
 import keyboard  # работа с нажатиями клавиш
-import webbrowser
+
  
 
 
@@ -26,7 +25,7 @@ def screen_resolution():  # функция определения разреше
     return screen_width_x, screen_height_y  # возвращение глобальных переменных
 
 
-def ss(template):  # функция определения и двойного нажатия на координаты кнопки
+def ss(template):  # функция определения координат изображения
     global zero, screen_width_x, screen_height_y, buttonx, buttony
     try:
         buttonx, buttony = pg.locateCenterOnScreen(template, region=(0, 0, screen_width_x, screen_height_y), confidence=0.7)
