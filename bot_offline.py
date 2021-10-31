@@ -113,10 +113,10 @@ active_dir = 'media/' + str(screen_width_x) + 'x' + str(screen_height_y) + '/'  
 print(screen_width_x, screen_height_y)
 ss(active_dir + "dragon.png")  # определение координат дракона на экране
 print(buttonx, buttony)
-x1 = int(buttonx + 150)
-y1 = int(buttony - 15)
-x2 = int(30)
-y2 = int(30)
+x1 = int(buttonx + (screen_width_x * (150/1920)))
+y1 = int(buttony - (screen_height_y * (15/1920)))
+x2 = int(screen_width_x * (30/1920))
+y2 = int(screen_height_y * (30/1920))
 monitor = {'top': y1, 'left': x1, 'width': x2, 'height': y2}  # расчет зоны реакции
 
 
