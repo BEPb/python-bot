@@ -83,12 +83,11 @@ def main():
             pg.press('space')  # для запуска новой игры нажимаем пробел
             space_time = time.time()  # определяем время нажатия пробела
             delta_time = (time.time() - last_time)/60  # длительность игры в минутах
-            logging.info('%s game time', delta_time)  # запись в лог файл ширины экрана
+            logging.info('%s min - game time', delta_time)  # запись в лог файл ширины экрана
 
-        if cv2.waitKey(25) & 0xFF == ord('q'):  # ожидает 25 милисекунд, при нажатии на клавишу 'q'
-            print("Ты сказал стоп слово), извращения заканчиваем....")
-            cv2.destroyAllWindows()
+        if keyboard.is_pressed('q'):  # при нажатии на кнопку 'q' выход из программы
             break  # выход из цикла
+
 
 # variables (переменные)
 screen_width_x = 0  # ширина экрана, координата х - максимальная
