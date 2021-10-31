@@ -14,11 +14,12 @@ import keyboard  # работа с нажатиями клавиш
 
 
 def screen_resolution():  # функция определения разрешения экрана
-    global screen_width_x, screen_height_y
-    cmd = 'wmic path Win32_VideoController get CurrentHorizontalResolution,CurrentVerticalResolution'
-    size_tuple = tuple(map(int, os.popen(cmd).read().split()[-2::]))
-    screen_width_x = size_tuple[0]
-    screen_height_y = size_tuple[1]
+    global screen_width_x, screen_height_y  # определяем глобальные переменные
+    cmd = 'wmic path Win32_VideoController get CurrentHorizontalResolution,CurrentVerticalResolution'  # вызываем
+    # командную строку и через нее определяем разрешение экрана
+    size_tuple = tuple(map(int, os.popen(cmd).read().split()[-2::]))  # считываем данные из командной строки
+    screen_width_x = size_tuple[0]  # сохраняем значения расширения экрана по оси х
+    screen_height_y = size_tuple[1]  # сохраняем значения расширения экрана по оси у
     logging.info('%s screen width', screen_width_x)  # запись в лог файл ширины экрана
     logging.info('%s screen height', screen_height_y)  # запись в лог файл высоты экрана
     return screen_width_x, screen_height_y  # возвращение глобальных переменных
@@ -37,15 +38,16 @@ def startlnk():  # функция запуска приложения
 
 
 def ss(template):  # функция определения координат изображения
-    global zero, screen_width_x, screen_height_y, buttonx, buttony
+    global zero, screen_width_x, screen_height_y, buttonx, buttony  # определяем глобальные переменные
     try:
-        buttonx, buttony = pg.locateCenterOnScreen(template, region=(0, 0, screen_width_x, screen_height_y), confidence=0.7)
-        # pg.moveTo(buttonx, buttony)
-        # pg.doubleClick(buttonx, buttony)
-        time.sleep(1)
-        return buttonx, buttony
-    except TypeError:
-        return zero
+        buttonx, buttony = pg.locateCenterOnScreen(template, region=(0, 0, screen_width_x, screen_height_y),
+                                                   confidence=0.7)  # опеределяем координаты нашего дракона
+        # pg.moveTo(buttonx, buttony)  # перемещается к искомомму изображению
+        # pg.doubleClick(buttonx, buttony)  # дважды нажимает на искомое изображение
+        time.sleep(1)  # ждем 1 сек.
+        return buttonx, buttony   # возвращаем переменные
+    except TypeError:  # в том случае если изображение не найдено
+        return zero  # возвращаем ноль
 
  
 def process_image(original_image):
@@ -67,11 +69,11 @@ def main():
         # print(output)  # название файла
         # print('loop took {} seconds'.format(time.time() - last_time))  # отображаем время между анализом изображения
         # last_time = time.time()
-        img = np.array(img)
-        processed_image = process_image(img)
-        mean = np.mean(processed_image)
+        img = np.array(img)  # преобразуем изображение в табличные данные
+        processed_image = process_image(img)  # запускаем функцию
+        mean = np.mean(processed_image)  # переменная которая определяет смену изображения в указанной зоне
         # print('mean = ', mean)
-        delta_time = time.time() - space_time
+        delta_time = time.time() - space_time  # разница по времени между нажатиями кнопки пробел
 
         if not mean == float(0):  # если картинка в указанное области менялась, то..
             pg.press('space')  # нажатие на пробел
@@ -80,6 +82,8 @@ def main():
         if delta_time > 15:  # если долго (более 15 секунд) не нажимают на пробел значит игра закончена
             pg.press('space')  # для запуска новой игры нажимаем пробел
             space_time = time.time()  # определяем время нажатия пробела
+            delta_time = (time.time() - last_time)/60  # длительность игры в минутах
+            logging.info('%s game time', delta_time)  # запись в лог файл ширины экрана
 
         if cv2.waitKey(25) & 0xFF == ord('q'):  # ожидает 25 милисекунд, при нажатии на клавишу 'q'
             print("Ты сказал стоп слово), извращения заканчиваем....")
@@ -89,7 +93,7 @@ def main():
 # variables (переменные)
 screen_width_x = 0  # ширина экрана, координата х - максимальная
 screen_height_y = 0  # высота экрана, координата у - максимальная
-zero = 0
+zero = 0  # пустая переменная
 buttonx = 100  # координаты объекта по оси х
 buttony = 100  # координаты объекта по оси у
 
