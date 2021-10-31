@@ -2,16 +2,15 @@
 # bot for offline game on hrome
 
 import numpy as np
-import cv2
-from mss.windows import MSS as mss
+import cv2   # работа с изображениями
+from mss.windows import MSS as msss  # модуль обработки скрина без сохранения на диск
+import mss.tools
 import os  # для работы с командной строкой (определение экрана)
 import time  # работа со временем
 import pyautogui as pg
 import logging  # модуль логирования
 import subprocess  # Запуск приложений windows
 import keyboard  # работа с нажатиями клавиш
-
- 
 
 
 def screen_resolution():  # функция определения разрешения экрана
@@ -23,6 +22,18 @@ def screen_resolution():  # функция определения разреше
     logging.info('%s screen width', screen_width_x)  # запись в лог файл ширины экрана
     logging.info('%s screen height', screen_height_y)  # запись в лог файл высоты экрана
     return screen_width_x, screen_height_y  # возвращение глобальных переменных
+
+
+def startlnk():  # функция запуска приложения
+    subprocess.Popen('C:\Program Files\Google\Chrome\Application\chrome.exe')  # запуск приложения
+    time.sleep(1)  # время ожидания запуска
+    time.sleep(1)  # время ожидания
+    keyboard.send("Ctrl + Shift + T")  # открывает последнюю страницу
+    keyboard.send("windows+up")  # разворачивает приложение на все окно
+    time.sleep(1)  # время ожидания
+    keyboard.send("Ctrl + Shift + R")  # обновляем страницу
+    time.sleep(1)  # время ожидания
+    keyboard.send("space")  # начинаем игру нажимая пробел
 
 
 def ss(template):  # функция определения координат изображения
@@ -44,31 +55,43 @@ def process_image(original_image):
 
 
 def main():
-    sct = mss()
-    last_time = time.time()
+    sct = msss()  # модуль обработки скрина без сохранения на диск
+    last_time = time.time()  # определяем текущее время
+    space_time = time.time()  # определяем время нажатия пробела
 
     while(True):
-        img = sct.grab(mon)
-        print('loop took {} seconds'.format(time.time() - last_time))
-        last_time = time.time()
+        img = sct.grab(monitor)  # модуль обработки скрина без сохранения на диск
+        # Save to the picture file
+        # output = "sct-{top}x{left}_{width}x{height}.png".format(**monitor)  # определяем формат изображения
+        # mss.tools.to_png(img.rgb, img.size, output=output)  # сохраняем изображение
+        # print(output)  # название файла
+        # print('loop took {} seconds'.format(time.time() - last_time))  # отображаем время между анализом изображения
+        # last_time = time.time()
         img = np.array(img)
         processed_image = process_image(img)
         mean = np.mean(processed_image)
-        print('mean = ', mean)
- 
-        if not mean == float(0):
-            pg.press('space')
- 
-        if cv2.waitKey(25) & 0xFF == ord('q'):
+        # print('mean = ', mean)
+        delta_time = time.time() - space_time
+
+        if not mean == float(0):  # если картинка в указанное области менялась, то..
+            pg.press('space')  # нажатие на пробел
+            space_time = time.time()  # определяем время нажатия пробела
+
+        if delta_time > 15:  # если долго (более 15 секунд) не нажимают на пробел значит игра закончена
+            pg.press('space')  # для запуска новой игры нажимаем пробел
+            space_time = time.time()  # определяем время нажатия пробела
+
+        if cv2.waitKey(25) & 0xFF == ord('q'):  # ожидает 25 милисекунд, при нажатии на клавишу 'q'
+            print("Ты сказал стоп слово), извращения заканчиваем....")
             cv2.destroyAllWindows()
-            break
+            break  # выход из цикла
 
 # variables (переменные)
 screen_width_x = 0  # ширина экрана, координата х - максимальная
 screen_height_y = 0  # высота экрана, координата у - максимальная
 zero = 0
-buttonx = 0  # координаты объекта по оси х
-buttony = 0  # координаты объекта по оси у
+buttonx = 100  # координаты объекта по оси х
+buttony = 100  # координаты объекта по оси у
 
 
 # описываем параметры логирования
@@ -82,20 +105,7 @@ logging.info('Start game and logged in')
 # logging.critical('This is a critical message')
 
 
-
-def startlnk():  # функция запуска приложения
-    subprocess.Popen('C:\Program Files\Google\Chrome\Application\chrome.exe')  # запуск приложения
-    time.sleep(1)  # время ожидания запуска
-    time.sleep(1)  # время ожидания
-    keyboard.send("Ctrl + Shift + T")  # открывает последнюю страницу
-    keyboard.send("windows+up")  # разворачивает приложение на все окно
-    # keyboard.send("Ctrl + Shift + R")  # обновляем страницу
-    time.sleep(1)  # время ожидания
-
-
-
 # исполняемый код
-
 startlnk()  # запуск приложения хром
 screen_resolution()  # определяем разрешение экрана
 active_dir = 'media/' + str(screen_width_x) + 'x' + str(screen_height_y) + '/'  # активная папка для соответствующего
@@ -103,8 +113,11 @@ active_dir = 'media/' + str(screen_width_x) + 'x' + str(screen_height_y) + '/'  
 print(screen_width_x, screen_height_y)
 ss(active_dir + "dragon.png")  # определение координат дракона на экране
 print(buttonx, buttony)
-mon = {'top': buttonx + 10, 'left': (buttony - 15), 'width': 85, 'height': 30}  # расчет зоны реакции
-# для прыжка
+x1 = int(buttonx + 150)
+y1 = int(buttony - 15)
+x2 = int(30)
+y2 = int(30)
+monitor = {'top': y1, 'left': x1, 'width': x2, 'height': y2}  # расчет зоны реакции
 
 
 if __name__ == "__main__":
