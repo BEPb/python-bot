@@ -1,11 +1,9 @@
-![Profile views](https://gpvc.arturio.dev/python-bot) ![AppVeyor](https://img.shields.io/appveyor/build/BEPb/python-bot) 
-![GitHub top language](https://img.shields.io/github/languages/top/BEPb/python-bot) ![GitHub language count](https://img.shields.io/github/languages/count/BEPb/python-bot)
-![David](https://img.shields.io/david/dev/BEPb/python-bot) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/BEPb/python-bot)
-![GitHub repo size](https://img.shields.io/github/repo-size/BEPb/python-bot) ![GitHub all releases](https://img.shields.io/github/downloads/BEPb/python-bot/total)
-![GitHub](https://img.shields.io/github/license/BEPb/python-bot) ![GitHub last commit](https://img.shields.io/github/last-commit/BEPb/python-bot)
-
+![Profile views](https://gpvc.arturio.dev/BEPb) ![GitHub top language](https://img.shields.io/github/languages/top/BEPb/README) ![GitHub language count](https://img.shields.io/github/languages/count/BEPb/README)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/BEPb/README)
+![GitHub repo size](https://img.shields.io/github/repo-size/BEPb/README) ![GitHub](https://img.shields.io/github/license/BEPb/README) ![GitHub last commit](https://img.shields.io/github/last-commit/BEPb/README)
 
 ![GitHub User's stars](https://img.shields.io/github/stars/BEPb?style=social)
+
 ## Бот офлайн игры браузера CHROME
 
 ____
