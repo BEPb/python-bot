@@ -1,6 +1,10 @@
-![Profile views](https://gpvc.arturio.dev/BEPb) ![GitHub top language](https://img.shields.io/github/languages/top/BEPb/python-bot) ![GitHub language count](https://img.shields.io/github/languages/count/BEPb/README)
+![Profile views](https://gpvc.arturio.dev/BEPb) 
+![GitHub top language](https://img.shields.io/github/languages/top/BEPb/python-bot) 
+![GitHub language count](https://img.shields.io/github/languages/count/BEPb/python-bot)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/BEPb/python-bot)
-![GitHub repo size](https://img.shields.io/github/repo-size/BEPb/python-bot) ![GitHub](https://img.shields.io/github/license/BEPb/python-bot) ![GitHub last commit](https://img.shields.io/github/last-commit/BEPb/README)
+![GitHub repo size](https://img.shields.io/github/repo-size/BEPb/python-bot) 
+![GitHub](https://img.shields.io/github/license/BEPb/python-bot) 
+![GitHub last commit](https://img.shields.io/github/last-commit/BEPb/python-bot)
 
 ![GitHub User's stars](https://img.shields.io/github/stars/BEPb?style=social)
 
