@@ -8,18 +8,22 @@
 
 ![GitHub User's stars](https://img.shields.io/github/stars/BEPb?style=social)
 
-## Бот офлайн игры браузера CHROME
+
+Read in other languages: [English](README.ru.md)
+
+
+## CHROME browser offline game bot
 
 ____
 ![](./media/title.gif)
 
-В автоматическом режиме запускает браузер Chrome под ОС windows, так же автоматически определяет разрешения экрана, 
-на основании полученных данных находит главного героя - динозавра и производит расчет зоны реагирования. Мой личный 
-рекорд при помощи этого бота 3119, а Вам слабо?....
+In automatic mode, launches the Chrome browser under windows OS, also automatically detects screen resolutions,
+Based on the received data, it finds the main character - a dinosaur and calculates the response zone. My personal
+the record with this bot is 3119, but you feel weak?....
 
-## Порядок установки и запуска                    
+## How to install and run
 ____
-### Клонируем репозиторий (Clone the repository)
+### Clone the repository
  
 ```sh
 $ cmd
@@ -27,24 +31,25 @@ $ git clone https://github.com/BEPb/python-bot
 $ cd python-bot
 ```
  
-### Устанавливаем необходимые пакеты (Install dependencies)
+### Install the necessary packages (Install dependencies)
 ```sh
 $    -r requirements.txt
 ```
-### Отключаем интернет, убеждаемся в этом, иначе игра в браузрее не появится 
-### Запускаем нашего бота 
+### Turn off the Internet, make sure of this, otherwise the game will not appear in the browser
+### Run our bot
  
 ```sh
 $ python bot_offline.py
 ```
 
- Бот открывает последнюю страницу и обновляет ее, при отсутствии интернета открывается игра. Т.к. алгоритм 
- определения основанный только на одной зоне, не учитывающий увеличивающуюся скорость приближающихся объектов не 
- оптимален и при пройгрыше идет запуск  игры повторно через 15 секунд, после пройгрыша. Сама программа снабжено лог  
- файлом, учитывающая разрешение экрана и длительность каждой игры.
+The bot opens the last page and updates it, in the absence of the Internet, the game opens. Because algorithm
+ definitions based on only one zone, not taking into account the increasing speed of approaching objects does not
+ is optimal and when you lose, the game starts again after 15 seconds, after the loss. The program itself is provided with a log
+ file, taking into account the screen resolution and the duration of each game.
       
- Для ручного подбора зоны реагирования также написана программа draft.py, которая произведет все те же манипуляции по запуску браузера, а затем сохранит Вам скриншот с выделенной зоной реагирования черным прямоугольником.
- Очень подробно описывал код, для его улучшения, это только приветствуется. Питон рулит
+ For manual selection of the response zone, the draft.py program was also written, which will perform all the same manipulations.
+ upon launching the browser, and then it will save you a screenshot with a black rectangle highlighted in the response area.
+ He described the code in great detail, for its improvement, this is only welcome. Python rules
  
 ____
 ![](./media/python.jpeg)
