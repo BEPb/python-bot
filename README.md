@@ -9,7 +9,7 @@
 ![GitHub User's stars](https://img.shields.io/github/stars/BEPb?style=social)
 
 
-Read in other languages: [English](README.ru.md), [हिन्दी](README.hindi.md)
+Read in other languages: [Russian](README.ru.md), [हिन्दी](README.hindi.md), [中國人](README.chinese.md)
 
 
 ## CHROME browser offline game bot
