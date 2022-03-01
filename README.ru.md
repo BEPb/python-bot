@@ -9,7 +9,7 @@
 ![GitHub User's stars](https://img.shields.io/github/stars/BEPb?style=social)
 
 
-Читать на других языках: [English](README.ru.md)
+Читать на других языках: [English](README.ru.md), [हिन्दी](README.hindi.md)
 
 ## Бот офлайн игры браузера CHROME
 
